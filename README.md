@@ -1,6 +1,7 @@
-# Chrome & Swisscovery Search
-Dies ist eine simple Erweiterung für Google Chrome.
-Um dies zu installieren, braucht man einen Google Account, mit dem man sich beim Chrome angemeldet ist. 
+# Vorlesen
+
+Mit diesem Addon kann man die markierte Textstelle auf einer Webseite vorlesen lassen.
+... Allerdings ist die Sprache "Japanisch" voreingestellt... Also nur die japanische Textstelle markieren...
 
 ## Installation 
 
@@ -13,5 +14,12 @@ Um dies zu installieren, braucht man einen Google Account, mit dem man sich beim
 
 1. Eine Textstelle in einer Webseite markieren
 1. Durch Rechtsklick das Menü öffnen
-1. "Die ausgewählte Textstelle [...] in Swisscovery suchen" klicken
-1. Swisscovery wird in einer weiteren Tab geöffnet und die Suchergebnisse werden angezeigt
+1. "Vorlesen!" klicken
+1. Dann sollte die ausgewählte Textstelle vorgelesen. 
+
+## ToDo
+- Vielleicht kann man eine Einstellungskonsole erstellen, durch die man Stimmhöhe, Geschwindigkeit und Sprache einstellen kann. 
+- Die Textstelle mit Rubi in HTML `<ruby><rb>仏蘭西</rb><rp>（</rp><rt>フランス</rt><rp>）</rp></ruby>` wird dopelt gelesen. Es muss nur den Inhalt vom <rt>-Tag vorgelesen werden
+
+## Thanks to
+[Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)

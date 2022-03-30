@@ -1,17 +1,17 @@
 {
-    "name": "Swisscovery search shortcut",
-    "version": "0.0.2",
+    "name": "Nihongo vorleser",
+    "version": "0.0.1",
     "manifest_version": 2,
-    "description": "Ausgewählte Textstelle in Swisscovery suchen",
+    "description": "Ausgewählte Textstelle (Japanisch) vorlesen",
     "icons": {
-        "16": "search_neko.png",
-        "48": "search_neko.png",
-        "128": "search_neko.png"
+        "16": "kakuseiki.png",
+        "48": "kakuseiki.png",
+        "128": "kakuseiki.png"
     },
     "permissions": [
        "contextMenus"
     ],
     "background": {
-       "scripts": ["background_swisscov.js"]
+       "scripts": ["textSpeech.js"]
     }
 }
