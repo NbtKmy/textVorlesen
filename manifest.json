@@ -1,17 +1,23 @@
 {
-    "name": "Nihongo vorleser",
-    "version": "0.0.1",
+    "name": "Der Vorleser",
+    "version": "1.0.0",
     "manifest_version": 2,
-    "description": "Ausgewählte Textstelle (Japanisch) vorlesen",
+    "description": "Ausgewählte Textstelle vorlesen",
     "icons": {
         "16": "kakuseiki.png",
         "48": "kakuseiki.png",
         "128": "kakuseiki.png"
     },
     "permissions": [
-       "contextMenus"
+        "storage",
+        "background",
+        "contextMenus"
     ],
     "background": {
        "scripts": ["textSpeech.js"]
-    }
+    },
+    "browser_action": {
+        "default_title": "Vorleser",
+        "default_popup": "popup/popup.html"
+     }
 }

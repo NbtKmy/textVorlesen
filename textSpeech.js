@@ -3,6 +3,15 @@ let pitchValue = 1;
 let rateValue = 1;
 let langValue = 'ja-JP'
 
+// wenn eine Konfiguration im Browser vorhanden ist...
+chrome.storage.sync.get('config_exists', items => {
+    
+    pitchValue = items.selected_pitch;
+    rateValue = items.selected_rate;
+    langValue = items.selected_lang;
+    
+  });
+
 function speakStart(text, pitchValue, rateValue, langValue){
 
     speechSynthesis.cancel();
