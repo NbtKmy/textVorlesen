@@ -2,15 +2,11 @@
 
 
 function getAllStorageSyncData() {
-    // Immediately return a promise and start asynchronous work
     return new Promise((resolve, reject) => {
-      // Asynchronously fetch all data from storage.sync.
       chrome.storage.sync.get(null, (items) => {
-        // Pass any observed errors down the promise chain.
         if (chrome.runtime.lastError) {
           return reject(chrome.runtime.lastError);
         }
-        // Pass the data retrieved from storage down the promise chain.
         resolve(items);
       });
     });
@@ -49,7 +45,7 @@ chrome.contextMenus.create({
 
         // wenn eine Konfiguration im Browser vorhanden ist...
         getAllStorageSyncData().then( vals => {
-            console.log(vals.config_exists);
+            //console.log(vals.config_exists);
             if (vals.config_exists){
                 pitchValue = vals.selected_pitch;
                 rateValue = vals.selected_rate;
@@ -60,7 +56,7 @@ chrome.contextMenus.create({
                 rateValue = 1;
                 langValue = 'ja-JP';
             }
-            console.log(pitchValue);
+            //console.log(pitchValue);
             speakStart(text, pitchValue, rateValue, langValue);
         });
     }

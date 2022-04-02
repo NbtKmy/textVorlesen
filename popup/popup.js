@@ -9,9 +9,6 @@ var rate = document.querySelector('#rateBar');
 var rateValue = document.querySelector('.rate-value');
 var configSet = document.querySelector('#configSet');
 
-var pitchSet, rateSet, voiceSet;
-
-
 function setSpeech() {
     return new Promise(
         function (resolve, reject) {
@@ -28,15 +25,11 @@ function setSpeech() {
 }
 
 function getAllStorageSyncData() {
-  // Immediately return a promise and start asynchronous work
   return new Promise((resolve, reject) => {
-    // Asynchronously fetch all data from storage.sync.
     chrome.storage.sync.get(null, (items) => {
-      // Pass any observed errors down the promise chain.
       if (chrome.runtime.lastError) {
         return reject(chrome.runtime.lastError);
       }
-      // Pass the data retrieved from storage down the promise chain.
       resolve(items);
     });
   });
@@ -62,31 +55,7 @@ function populateVoiceList() {
   });
 }
 
-
   populateVoiceList();
-
-
-// wenn eine Konfiguration im Browser vorhanden ist...
-/*
-chrome.storage.sync.get('config_exists', bool => {
-    
-    if (bool.config_exists) {
-
-      chrome.storage.sync.get('selected_pitch', p => {
-        pitchSet = p.selected_pitch;
-      });
-      chrome.storage.sync.get('selected_rate', r => {
-        rateSet = r.selected_rate;
-      });
-      chrome.storage.sync.get('selected_voice', v => {
-        voiceSet = v.selected_voice;
-      });
-
-      configSet.innerHTML = 'Gespeicherte Konfiguration:<br>' + 'Stimmhöhe: ' + pitchSet + '<br>Geschwindigkeit: ' + rateSet + '<br>Sprache: ' + voiceSet;
-    }
-  });
-  */
-
 
   inputForm.onsubmit = event => {
     event.preventDefault();
@@ -100,7 +69,7 @@ chrome.storage.sync.get('config_exists', bool => {
       'selected_voice': selectedVoiceName,
       'selected_lang': selectedLangName,
     };
-    console.log(objSet);
+    //console.log(objSet);
     
     chrome.storage.sync.set( objSet , () => {
         

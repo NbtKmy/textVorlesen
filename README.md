@@ -18,7 +18,7 @@ Mit diesem Addon kann man die markierte Textstelle auf einer Webseite vorlesen l
 1. Dann sollte die ausgewählte Textstelle vorgelesen. 
 
 ## ToDo
-- Vielleicht kann man eine Einstellungskonsole erstellen, durch die man Stimmhöhe, Geschwindigkeit und Sprache einstellen kann. 
+ ~~- Vielleicht kann man eine Einstellungskonsole erstellen, durch die man Stimmhöhe, Geschwindigkeit und Sprache einstellen kann.~~ 
 - Die Textstelle mit Rubi in HTML `<ruby><rb>仏蘭西</rb><rp>（</rp><rt>フランス</rt><rp>）</rp></ruby>` wird dopelt gelesen. Es muss nur den Inhalt vom <rt>-Tag vorgelesen werden
 
 ## Thanks to  
