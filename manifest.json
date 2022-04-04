@@ -1,7 +1,7 @@
 {
     "name": "Vorleser",
     "version": "1.0.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "description": "Ausgewählte Textstelle vorlesen",
     "icons": {
         "16": "kakuseiki.png",
@@ -16,7 +16,7 @@
     "background": {
        "scripts": ["textSpeech.js"]
     },
-    "browser_action": {
+    "action": {
         "default_title": "Vorleser",
         "default_popup": "popup/popup.html"
      }
