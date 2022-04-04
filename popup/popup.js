@@ -55,7 +55,22 @@ function populateVoiceList() {
   });
 }
 
+
+////////////////////////////
+// Seiteninhalt erstellen //
+////////////////////////////
+
   populateVoiceList();
+  getAllStorageSyncData().then( items => {
+    if (items.config_exists){
+    configSet.innerHTML = '<h3>Gespeicherte Konfiguration</h3>' + '<ul><li>Stimmhöhe: ' + items.selected_pitch + '</li><li>Geschwindigkeit: ' + items.selected_rate + '</li><li>Sprache: ' + items.selected_voice + '</li></ul>';
+    }
+  });
+
+
+///////////////
+// Triggers //
+//////////////
 
   inputForm.onsubmit = event => {
     event.preventDefault();
@@ -75,7 +90,7 @@ function populateVoiceList() {
         
         alert('Die Einstellung ist im Browser gespeichert');
         getAllStorageSyncData().then( items => {
-          configSet.innerHTML = 'Gespeicherte Konfiguration:<br>' + 'Stimmhöhe: ' + items.selected_pitch + '<br>Geschwindigkeit: ' + items.selected_rate + '<br>Sprache: ' + items.selected_voice;
+          configSet.innerHTML = '<h3>Gespeicherte Konfiguration</h3>' + '<ul><li>Stimmhöhe: ' + items.selected_pitch + '</li><li>Geschwindigkeit: ' + items.selected_rate + '</li><li>Sprache: ' + items.selected_voice + '</li></ul>';
         });
       });
   }
