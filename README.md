@@ -3,6 +3,8 @@
 Mit diesem Addon kann man die markierte Textstelle auf einer Webseite vorlesen lassen.
 ... Allerdings ist die Sprache "Japanisch" voreingestellt... Also nur die japanische Textstelle markieren...
 
+Seitdem ich die Version des Manifest von 2 auf 3 ändern wollte, taucht die Fehlermeldung von Chrome "speechSynthesis is not defined"...
+
 ## Installation 
 
 1. Die Dateien dieses Repository herunterladen und entpacken
