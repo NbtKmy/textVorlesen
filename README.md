@@ -2,8 +2,10 @@
 
 Mit diesem Addon kann man die markierte Textstelle auf einer Webseite vorlesen lassen.
 ... 
-Dies im Branch "Manifest_v3" funktioniert momentan nicht richtig... 
 
+
+1. Zuerst die Einstellung des Vorlesens speichern
+1. Dann die Textstelle auf einer Webseite auswählen und 
 ## Installation 
 
 1. Die Dateien dieses Repository herunterladen und entpacken
@@ -13,10 +15,13 @@ Dies im Branch "Manifest_v3" funktioniert momentan nicht richtig...
 
 ## Anwendung
 
+Es ist etwas umständlich... 
+
+1. Zuerst die Einstellung des Vorlesens speichern
 1. Eine Textstelle in einer Webseite markieren
 1. Durch Rechtsklick das Menü öffnen
-1. "Vorlesen!" klicken
-1. Dann sollte die ausgewählte Textstelle vorgelesen. 
+1. "Text zum Vorlesen kopieren" klicken. Dann wird die Textstelle auf die Popup-Seite dieser Extension erscheinen
+1. Mit dem Klick "Vorlesen" beginnt das Vorlesen (nur 15 Sekunden...) 
 
 ## ToDo
  ~~- Vielleicht kann man eine Einstellungskonsole erstellen, durch die man Stimmhöhe, Geschwindigkeit und Sprache einstellen kann.~~ 

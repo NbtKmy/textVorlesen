@@ -1,4 +1,4 @@
-
+/*
 function getAllStorageSyncData() {
     return new Promise((resolve, reject) => {
       chrome.storage.sync.get(null, (items) => {
@@ -30,28 +30,13 @@ function speakStart(text, pitchValue, rateValue, langValue){
     speechSynthesis.speak(utterThis);
   }
 }
+*/
 
 chrome.contextMenus.onClicked.addListener(function(info) {
   if (info.menuItemId == "Vorlesen") {
     let text = info.selectionText;
-    let pitchValue, rateValue, langValue
-
-    // wenn eine Konfiguration im Browser vorhanden ist...
-    getAllStorageSyncData().then( vals => {
-        //console.log(vals.config_exists);
-        if (vals.config_exists){
-            pitchValue = vals.selected_pitch;
-            rateValue = vals.selected_rate;
-            langValue = vals.selected_lang;
-        }
-        else {
-            pitchValue = 1;
-            rateValue = 1;
-            langValue = 'ja-JP';
-        }
-        //console.log(pitchValue);
-        speakStart(text, pitchValue, rateValue, langValue);
-      
+    chrome.storage.sync.set( { 'text_zum_Vorlesen': text }, function(){
+      //alert('Text zum Vorlesen kopiert.');
     });
   }
 })
@@ -59,7 +44,7 @@ chrome.contextMenus.onClicked.addListener(function(info) {
 
 chrome.contextMenus.create({
     "id": "Vorlesen",
-    "title": "Vorlesen!",
+    "title": "Text zum Vorlesen kopieren",
     "type": "normal",
     "contexts": ["selection"]
     }

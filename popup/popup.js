@@ -8,6 +8,12 @@ var pitchValue = document.querySelector('.pitch-value');
 var rate = document.querySelector('#rateBar');
 var rateValue = document.querySelector('.rate-value');
 var configSet = document.querySelector('#configSet');
+var textSet = document.querySelector('#textSet');
+var lesenButton = document.querySelector('#lesen');
+
+///////////////
+// functions //
+///////////////
 
 function setSpeech() {
     return new Promise(
@@ -64,6 +70,7 @@ function populateVoiceList() {
   getAllStorageSyncData().then( items => {
     if (items.config_exists){
     configSet.innerHTML = '<h3>Gespeicherte Konfiguration</h3>' + '<ul><li>Stimmhöhe: ' + items.selected_pitch + '</li><li>Geschwindigkeit: ' + items.selected_rate + '</li><li>Sprache: ' + items.selected_voice + '</li></ul>';
+    textSet.innerHTML = '<h3>Text zum Vorlesen</h3><p>' + items.text_zum_Vorlesen + '</p>';
     }
   });
 
@@ -84,7 +91,7 @@ function populateVoiceList() {
       'selected_voice': selectedVoiceName,
       'selected_lang': selectedLangName,
     };
-    //console.log(objSet);
+
     
     chrome.storage.sync.set( objSet , () => {
         
@@ -105,3 +112,41 @@ function populateVoiceList() {
     rateValue.textContent = rate.value;
   }
 
+  function speakStart(){
+
+    synth.cancel();
+
+    getAllStorageSyncData().then( vals => {
+      //console.log(vals.config_exists);
+      if (vals.config_exists){
+          pitchValue = vals.selected_pitch;
+          rateValue = vals.selected_rate;
+          langValue = vals.selected_lang;
+      }
+      else {
+          pitchValue = 1;
+          rateValue = 1;
+          langValue = 'ja-JP';
+      }
+
+      if (!vals.text_zum_Vorlesen){
+        alert('Text ist nicht vorhanden!')
+      } else {
+      let text = vals.text_zum_Vorlesen;
+
+      let utterThis = new SpeechSynthesisUtterance(text);
+      utterThis.onend = function (event) {
+          console.log('SpeechSynthesisUtterance.onend');
+      }
+      utterThis.onerror = function (event) {
+          console.error('SpeechSynthesisUtterance.onerror');
+      }
+      
+      utterThis.lang = langValue;
+      utterThis.pitch = pitchValue;
+      utterThis.rate = rateValue;
+      synth.speak(utterThis);
+    }
+  })
+}
+lesenButton.addEventListener('click', speakStart);
