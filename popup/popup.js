@@ -48,6 +48,7 @@ function populateVoiceList() {
 
   populateVoiceList();
 
+  /*
 // wenn eine Konfiguration im Browser vorhanden ist...
 chrome.storage.sync.get('config_exists', items => {
     
@@ -55,12 +56,13 @@ chrome.storage.sync.get('config_exists', items => {
     rateValue.textContent = items.selected_rate;
     
   });
+*/
 
   inputForm.onsubmit = event => {
     event.preventDefault();
     let selectedVoiceName = voiceSelect.selectedOptions[0].getAttribute('data-name');
     let selectedLangName = voiceSelect.selectedOptions[0].getAttribute('data-lang');
-
+/*
     chrome.storage.sync.set({
         config_exists: true,
         selected_pitch: pitch.value,
@@ -70,10 +72,13 @@ chrome.storage.sync.get('config_exists', items => {
       }, () => {
         alert('Die Einstellung ist im Browser gespeichert');
       });
-  }
+  */
+    }
+
 
   pitch.onchange = function() {
     pitchValue.textContent = pitch.value;
+    console.log(pitch.value);
   }
   rate.onchange = function() {
     rateValue.textContent = rate.value;
