@@ -1,7 +1,8 @@
 # Vorlesen
 
 Mit diesem Addon kann man die markierte Textstelle auf einer Webseite vorlesen lassen.
-... Allerdings ist die Sprache "Japanisch" voreingestellt... Also nur die japanische Textstelle markieren...
+... 
+Dies im Branch "Manifest_v3" funktioniert momentan nicht richtig... 
 
 ## Installation 
 
