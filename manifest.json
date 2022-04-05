@@ -1,6 +1,6 @@
 {
     "name": "Vorleser",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "manifest_version": 3,
     "description": "Ausgewählte Textstelle vorlesen",
     "icons": {
@@ -14,7 +14,7 @@
         "contextMenus"
     ],
     "background": {
-       "scripts": ["textSpeech.js"]
+       "service_worker": "textSpeech.js"
     },
     "action": {
         "default_title": "Vorleser",

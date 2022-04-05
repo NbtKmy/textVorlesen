@@ -1,6 +1,4 @@
 
-
-
 function getAllStorageSyncData() {
     return new Promise((resolve, reject) => {
       chrome.storage.sync.get(null, (items) => {
@@ -13,11 +11,9 @@ function getAllStorageSyncData() {
   }
 
 
-
-
 function speakStart(text, pitchValue, rateValue, langValue){
 
-    speechSynthesis.cancel();
+  speechSynthesis.cancel();
     
     if (text !== '') {
     let utterThis = new SpeechSynthesisUtterance(text);
@@ -35,29 +31,36 @@ function speakStart(text, pitchValue, rateValue, langValue){
   }
 }
 
+chrome.contextMenus.onClicked.addListener(function(info) {
+  if (info.menuItemId == "Vorlesen") {
+    let text = info.selectionText;
+    let pitchValue, rateValue, langValue
+
+    // wenn eine Konfiguration im Browser vorhanden ist...
+    getAllStorageSyncData().then( vals => {
+        //console.log(vals.config_exists);
+        if (vals.config_exists){
+            pitchValue = vals.selected_pitch;
+            rateValue = vals.selected_rate;
+            langValue = vals.selected_lang;
+        }
+        else {
+            pitchValue = 1;
+            rateValue = 1;
+            langValue = 'ja-JP';
+        }
+        //console.log(pitchValue);
+        speakStart(text, pitchValue, rateValue, langValue);
+      
+    });
+  }
+})
+
+
 chrome.contextMenus.create({
+    "id": "Vorlesen",
     "title": "Vorlesen!",
     "type": "normal",
-    "contexts": ["selection"],
-    "onclick": function(info) {
-        let text = info.selectionText;
-        let pitchValue, rateValue, langValue
-
-        // wenn eine Konfiguration im Browser vorhanden ist...
-        getAllStorageSyncData().then( vals => {
-            //console.log(vals.config_exists);
-            if (vals.config_exists){
-                pitchValue = vals.selected_pitch;
-                rateValue = vals.selected_rate;
-                langValue = vals.selected_lang;
-            }
-            else {
-                pitchValue = 1;
-                rateValue = 1;
-                langValue = 'ja-JP';
-            }
-            //console.log(pitchValue);
-            speakStart(text, pitchValue, rateValue, langValue);
-        });
+    "contexts": ["selection"]
     }
-});
+);
