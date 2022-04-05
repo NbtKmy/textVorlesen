@@ -1,16 +1,19 @@
-//pitch, rate & lang - might create a console panel  
-let pitchValue = 1;
-let rateValue = 1;
-let langValue = 'ja-JP'
 
-// wenn eine Konfiguration im Browser vorhanden ist...
-chrome.storage.sync.get('config_exists', items => {
-    
-    pitchValue = items.selected_pitch;
-    rateValue = items.selected_rate;
-    langValue = items.selected_lang;
-    
-  });
+
+
+function getAllStorageSyncData() {
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.get(null, (items) => {
+        if (chrome.runtime.lastError) {
+          return reject(chrome.runtime.lastError);
+        }
+        resolve(items);
+      });
+    });
+  }
+
+
+
 
 function speakStart(text, pitchValue, rateValue, langValue){
 
@@ -38,7 +41,23 @@ chrome.contextMenus.create({
     "contexts": ["selection"],
     "onclick": function(info) {
         let text = info.selectionText;
+        let pitchValue, rateValue, langValue
 
-        speakStart(text, pitchValue, rateValue, langValue);
+        // wenn eine Konfiguration im Browser vorhanden ist...
+        getAllStorageSyncData().then( vals => {
+            //console.log(vals.config_exists);
+            if (vals.config_exists){
+                pitchValue = vals.selected_pitch;
+                rateValue = vals.selected_rate;
+                langValue = vals.selected_lang;
+            }
+            else {
+                pitchValue = 1;
+                rateValue = 1;
+                langValue = 'ja-JP';
+            }
+            //console.log(pitchValue);
+            speakStart(text, pitchValue, rateValue, langValue);
+        });
     }
 });

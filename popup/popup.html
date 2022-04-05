@@ -2,33 +2,34 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  
+  <link rel="stylesheet" type="text/css" href="layout.css">
 </head>
 <body>
 
 <form>
     <div>
-    <label>Stimmhöhe</label>
+    <label for="pitchBar">Stimmhöhe</label>
     <input type="range" min="0" max="2" value="1" step="0.1" id="pitchBar">
     <div class="pitch-value">1</div>
     <div class="clearfix"></div>
     </div>
 
     <div>
-    <label>Geschwindigkeit</label>
+    <label for="rateBar">Geschwindigkeit</label>
     <input type="range" min="0.5" max="2" value="1" step="0.1" id="rateBar">
     <div class="rate-value">1</div>
     <div class="clearfix"></div>
     </div>
 
     <div>
-    <label>Sprache</label>
-    <select></select>
+    <label for="langSelect">Sprache</label>
+    <select id="langSelect"></select>
     </div>
-    <button id="submit">Save</button>
+    <button id="submit">Speichern</button>
    
     
 </form>
+<div id="configSet"></div>
 <script src="popup.js"></script>
 </body>
 </html>

@@ -1,13 +1,13 @@
 const synth = window.speechSynthesis;
 
 const inputForm = document.querySelector('form');
-let voiceSelect = document.querySelector('select');
+var voiceSelect = document.querySelector('select');
 
-let pitch = document.querySelector('#pitchBar');
-let pitchValue = document.querySelector('.pitch-value');
-let rate = document.querySelector('#rateBar');
-let rateValue = document.querySelector('.rate-value');
-
+var pitch = document.querySelector('#pitchBar');
+var pitchValue = document.querySelector('.pitch-value');
+var rate = document.querySelector('#rateBar');
+var rateValue = document.querySelector('.rate-value');
+var configSet = document.querySelector('#configSet');
 
 function setSpeech() {
     return new Promise(
@@ -24,6 +24,17 @@ function setSpeech() {
     )
 }
 
+function getAllStorageSyncData() {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(null, (items) => {
+      if (chrome.runtime.lastError) {
+        return reject(chrome.runtime.lastError);
+      }
+      resolve(items);
+    });
+  });
+}
+
 function populateVoiceList() {
     
     let res = setSpeech();
@@ -36,7 +47,7 @@ function populateVoiceList() {
             option.textContent += ' -- DEFAULT';
         }
         option.setAttribute('data-lang', voice.lang);
-        console.log(voice.lang);
+        //console.log(voice.lang);
         option.setAttribute('data-name', voice.name);
         voiceSelect.appendChild(option);
     })
@@ -45,34 +56,44 @@ function populateVoiceList() {
 }
 
 
+////////////////////////////
+// Seiteninhalt erstellen //
+////////////////////////////
 
   populateVoiceList();
-
-  /*
-// wenn eine Konfiguration im Browser vorhanden ist...
-chrome.storage.sync.get('config_exists', items => {
-    
-    pitchValue.textContent = items.selected_pitch;
-    rateValue.textContent = items.selected_rate;
-    
+  getAllStorageSyncData().then( items => {
+    if (items.config_exists){
+    configSet.innerHTML = '<h3>Gespeicherte Konfiguration</h3>' + '<ul><li>Stimmhöhe: ' + items.selected_pitch + '</li><li>Geschwindigkeit: ' + items.selected_rate + '</li><li>Sprache: ' + items.selected_voice + '</li></ul>';
+    }
   });
-*/
+
+
+///////////////
+// Triggers //
+//////////////
 
   inputForm.onsubmit = event => {
     event.preventDefault();
     let selectedVoiceName = voiceSelect.selectedOptions[0].getAttribute('data-name');
     let selectedLangName = voiceSelect.selectedOptions[0].getAttribute('data-lang');
-/*
-    chrome.storage.sync.set({
-        config_exists: true,
-        selected_pitch: pitch.value,
-        selected_rate: rate.value,
-        selected_voice: selectedVoiceName,
-        selected_lang: selectedLangName,
-      }, () => {
+
+    let objSet = {
+      'config_exists': true,
+      'selected_pitch': pitch.value,
+      'selected_rate': rate.value,
+      'selected_voice': selectedVoiceName,
+      'selected_lang': selectedLangName,
+    };
+    //console.log(objSet);
+    
+    chrome.storage.sync.set( objSet , () => {
+        
         alert('Die Einstellung ist im Browser gespeichert');
+        getAllStorageSyncData().then( items => {
+          configSet.innerHTML = '<h3>Gespeicherte Konfiguration</h3>' + '<ul><li>Stimmhöhe: ' + items.selected_pitch + '</li><li>Geschwindigkeit: ' + items.selected_rate + '</li><li>Sprache: ' + items.selected_voice + '</li></ul>';
+        });
       });
-  */
+
     }
 
 
