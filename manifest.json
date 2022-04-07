@@ -11,7 +11,12 @@
     "permissions": [
         "storage",
         "background",
-        "contextMenus"
+        "contextMenus",
+        "scripting"    
+    ],
+    "host_permissions": [
+        "http://*/",
+        "https://*/"
     ],
     "background": {
        "service_worker": "textSpeech.js"

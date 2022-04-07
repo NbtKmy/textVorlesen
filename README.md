@@ -15,13 +15,12 @@ Mit diesem Addon kann man die markierte Textstelle auf einer Webseite vorlesen l
 
 ## Anwendung
 
-Es ist etwas umständlich... 
+
 
 1. Zuerst die Einstellung des Vorlesens speichern
 1. Eine Textstelle in einer Webseite markieren
 1. Durch Rechtsklick das Menü öffnen
-1. "Text zum Vorlesen kopieren" klicken. Dann wird die Textstelle auf die Popup-Seite dieser Extension erscheinen
-1. Mit dem Klick "Vorlesen" beginnt das Vorlesen (nur 15 Sekunden...) 
+1. "Vorlesen!" klicken. Dann wird die Textstelle vorgelesen (nur 15 Sekunden...) 
 
 ## ToDo
  ~~- Vielleicht kann man eine Einstellungskonsole erstellen, durch die man Stimmhöhe, Geschwindigkeit und Sprache einstellen kann.~~ 
