@@ -11,12 +11,12 @@ function getAllStorageSyncData() {
   }
 */
 
-
+// This script will be executed on the active tab/window
 function speakStart(text){
 
     const synth = window.speechSynthesis;
     synth.cancel();
-    console.log(text);
+    //console.log(text);
     
     const xyz = new Promise((resolve, reject) => {
         chrome.storage.sync.get(null, (items) => {
@@ -78,7 +78,7 @@ function getTabID() {
 async function letItSpeak(text){
     
   let tabId = await getTabID();
-  console.log(text);
+  //console.log(text);
     chrome.scripting.executeScript(
       { 
         target: {tabId: tabId},
@@ -93,7 +93,7 @@ async function letItSpeak(text){
 chrome.contextMenus.onClicked.addListener(function(info) {
   if (info.menuItemId == "Vorlesen") {
     let text = info.selectionText;
-    console.log(text);
+    //console.log(text);
     letItSpeak(text);
     
   }
